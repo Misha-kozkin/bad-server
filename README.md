@@ -1,8 +1,7 @@
 https://github.com/Misha-kozkin/bad-server
-<<<<<<< HEAD
-=======
+Михаил Козкин
+когорта wff-cohort-33
 
->>>>>>> 06a5176 (fix(auth): add CSRF token endpoint)
 # WebLarek — интернет-магазин
 
 Учебный fullstack-проект интернет-магазина «WebLarek»: клиентская часть на React, серверная часть на Node.js/Express, база данных MongoDB. Весь проект запускается через Docker Compose, а раздачей статики и проксированием запросов занимается Nginx.

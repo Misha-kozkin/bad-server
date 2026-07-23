@@ -69,6 +69,9 @@ class Api {
         return this.request<UserResponseToken>('/auth/token', {
             method: 'GET',
             credentials: 'include',
+            headers: {
+            'x-csrf-token': getCookie('csrfToken') ?? '',
+        },
         })
     }
 
@@ -295,6 +298,9 @@ export class WebLarekAPI extends Api implements IWebLarekAPI {
         return this.request<ServerResponse<unknown>>('/auth/logout', {
             method: 'GET',
             credentials: 'include',
+            headers: {
+            'x-csrf-token': getCookie('csrfToken') ?? '',
+        },
         })
     }
 

@@ -16,6 +16,7 @@ services:
     volumes:
       - db:/data/db
     ports:
+    # Для локальной отладки через Compass. В продакшене секцию ports у mongo нужно удалить!
       - 27018:27017
     networks:
       - internal
@@ -30,6 +31,7 @@ services:
       - ./backend/src:/app/src
       - public:/app/src/public
     ports:
+    # Для локальной отладки бэкенда напрямую. В продакшене закрываем убираем ports
       - 3000:3000
     networks:
       - internal
@@ -40,6 +42,7 @@ services:
     build:
       context: nginx
     ports:
+    # Единственный публичный порт! Принимает внешний HTTP-трафик
       - 80:80
     volumes:
       - frontend:/var/app

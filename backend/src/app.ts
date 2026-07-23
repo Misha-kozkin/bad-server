@@ -17,7 +17,7 @@ const app = express()
 // Rate Limiter (защита от DDoS / перебора)
 const limiter = rateLimit({
     windowMs: 60 * 1000,
-    max: 100,
+    max: 15,
     standardHeaders: true,
     legacyHeaders: false,
     message: { message: 'Слишком много запросов, попробуйте позже' },

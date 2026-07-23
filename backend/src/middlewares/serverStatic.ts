@@ -3,9 +3,16 @@ import fs from 'fs'
 import path from 'path'
 
 export default function serveStatic(baseDir: string) {
+    const resolvedBase = path.resolve(baseDir)
+
     return (req: Request, res: Response, next: NextFunction) => {
         // Определяем полный путь к запрашиваемому файлу
-        const filePath = path.join(baseDir, req.path)
+        const filePath = path.resolve(resolvedBase, `.${path.normalize(req.path)}`)
+
+        // если итоговый путь вышел за пределы baseDir — не отдаём файл
+        if (filePath !== resolvedBase && !filePath.startsWith(resolvedBase + path.sep)) {
+            return next()
+        }
 
         // Проверяем, существует ли файл
         fs.access(filePath, fs.constants.F_OK, (err) => {

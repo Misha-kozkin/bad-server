@@ -1,8 +1,7 @@
+https://github.com/Misha-kozkin/bad-server
 # WebLarek — интернет-магазин
 
 Учебный fullstack-проект интернет-магазина «WebLarek»: клиентская часть на React, серверная часть на Node.js/Express, база данных MongoDB. Весь проект запускается через Docker Compose, а раздачей статики и проксированием запросов занимается Nginx.
-
-https://github.com/Misha-kozkin/bad-server
 
 ## Стек технологий
 

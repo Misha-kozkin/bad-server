@@ -70,7 +70,7 @@ class Api {
             method: 'GET',
             credentials: 'include',
             headers: {
-            'x-csrf-token': getCookie('csrfToken') ?? '',
+            'x-csrf-token': getCookie('_csrf') ?? '',
         },
         })
     }
@@ -299,7 +299,7 @@ export class WebLarekAPI extends Api implements IWebLarekAPI {
             method: 'GET',
             credentials: 'include',
             headers: {
-            'x-csrf-token': getCookie('csrfToken') ?? '',
+            'x-csrf-token': getCookie('_csrf') ?? '',
         },
         })
     }

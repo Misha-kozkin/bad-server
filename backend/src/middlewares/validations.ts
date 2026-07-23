@@ -45,7 +45,7 @@ export const validateOrderBody = celebrate({
         total: Joi.number().required().messages({
             'string.empty': 'Не указана сумма заказа',
         }),
-        comment: Joi.string().optional().allow(''),
+        comment: Joi.string().optional().allow('').max(300),
     }),
 })
 

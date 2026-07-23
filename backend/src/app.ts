@@ -16,10 +16,11 @@ const app = express()
 
 // Rate Limiter (защита от DDoS / перебора)
 const limiter = rateLimit({
-    windowMs: 60 * 1000,
-    max: 100,
+    windowMs: 10 * 1000,
+    max: 30,
     standardHeaders: true,
     legacyHeaders: false,
+    skip: (req) => req.path === '/auth/csrf-token',
     message: { message: 'Слишком много запросов, попробуйте позже' },
 })
 

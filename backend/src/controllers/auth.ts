@@ -9,6 +9,18 @@ import ConflictError from '../errors/conflict-error'
 import NotFoundError from '../errors/not-found-error'
 import UnauthorizedError from '../errors/unauthorized-error'
 import User from '../models/user'
+import { CSRF_COOKIE_NAME } from '../config'
+
+function setCsrfCookie(res: Response) {
+    const csrfToken = crypto.randomBytes(32).toString('hex')
+    res.cookie(CSRF_COOKIE_NAME, csrfToken, {
+        httpOnly: false,
+        sameSite: 'lax',
+        secure: false,
+        path: '/',
+    })
+    return csrfToken
+}
 
 // POST /auth/login
 const login = async (req: Request, res: Response, next: NextFunction) => {
@@ -22,6 +34,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
             refreshToken,
             REFRESH_TOKEN.cookie.options
         )
+        setCsrfCookie(res)
         return res.json({
             success: true,
             user,
@@ -46,6 +59,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
             refreshToken,
             REFRESH_TOKEN.cookie.options
         )
+        setCsrfCookie(res)
         return res.status(constants.HTTP_STATUS_CREATED).json({
             success: true,
             user: newUser,
@@ -154,6 +168,7 @@ const refreshAccessToken = async (
             refreshToken,
             REFRESH_TOKEN.cookie.options
         )
+        setCsrfCookie(res)
         return res.json({
             success: true,
             user: userWithRefreshTkn,

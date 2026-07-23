@@ -21,6 +21,12 @@ function setCsrfCookie(res: Response) {
     return csrfToken
 }
 
+// GET /auth/csrf-token
+const getCsrfToken = (_req: Request, res: Response) => {
+    const csrfToken = setCsrfCookie(res)
+    res.status(200).json({ csrfToken })
+}
+
 // POST /auth/login
 const login = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -221,6 +227,7 @@ const updateCurrentUser = async (
 }
 
 export {
+    getCsrfToken,
     getCurrentUser,
     getCurrentUserRoles,
     login,

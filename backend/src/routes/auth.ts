@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import rateLimit from 'express-rate-limit'
 import {
+    getCsrfToken,
     getCurrentUser,
     getCurrentUserRoles,
     login,
@@ -13,6 +14,9 @@ import auth from '../middlewares/auth'
 import verifyCsrf from '../middlewares/csrf'
 
 const authRouter = Router()
+
+authRouter.get('/csrf-token', getCsrfToken)
+
 
 const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 минут
